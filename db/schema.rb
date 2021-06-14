@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_14_134136) do
+ActiveRecord::Schema.define(version: 2021_06_14_140037) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +44,11 @@ ActiveRecord::Schema.define(version: 2021_06_14_134136) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+
+  create_table "calendars", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "timedate"
   create_table "flatsharings", force: :cascade do |t|
     t.string "title"
     t.string "description"
