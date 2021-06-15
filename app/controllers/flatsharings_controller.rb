@@ -18,7 +18,7 @@ class FlatsharingsController < ApplicationController
     @flatsharing = Flatsharing.new(flatsharing_params)
     
     if @flatsharing.save
-      render json: @flatsharing, status: :created, location: @flatsharing
+      render json: {flatsharing: @flatsharing}, status: :created, location: @flatsharing
     else
       render json: @flatsharing.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class FlatsharingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def flatsharing_params
-      flatsharing_params = params.require(:flatsharing).permit(:title, :description)
+      flatsharing_params = params.require(:flatsharing).permit(:title, :description, :admin_id)
     end
 end
