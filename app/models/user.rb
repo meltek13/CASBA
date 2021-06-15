@@ -3,15 +3,19 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_one_attached :avatar
-
+  belongs_to :flatsharing, optional: true
+  
   devise :database_authenticatable,
   :jwt_authenticatable,
   :registerable,
   :recoverable,
   jwt_revocation_strategy: JwtDenylist
 
+  
+
   def welcome_send
     UserMailer.welcome_email(self).deliver_now
   end
+
 
 end
