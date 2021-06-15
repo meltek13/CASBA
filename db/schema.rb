@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2021_06_14_140037) do
 
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,14 +43,18 @@ ActiveRecord::Schema.define(version: 2021_06_14_140037) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-
   create_table "calendars", force: :cascade do |t|
     t.string "title"
     t.string "description"
     t.string "timedate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "flatsharings", force: :cascade do |t|
     t.string "title"
     t.string "description"
+    t.integer "admin_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
