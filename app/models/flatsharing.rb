@@ -1,4 +1,4 @@
 class Flatsharing < ApplicationRecord
    has_many :users
-   serialize :flat_mate, Array
+   serialize :pending_invitation, Array
 end
