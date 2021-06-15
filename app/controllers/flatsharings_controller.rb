@@ -46,6 +46,6 @@ class FlatsharingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def flatsharing_params
-      flatsharing_params = params.require(:flatsharing).permit(:title, :description, :admin_id, :flat_mate)
+      flatsharing_params = params.require(:flatsharing).permit(:title, :description, :admin_id, :pending_invitation=>[])
     end
 end
