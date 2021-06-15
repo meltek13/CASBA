@@ -9,6 +9,7 @@ class User < ApplicationRecord
   :recoverable,
   jwt_revocation_strategy: JwtDenylist
 
+  belongs_to :flatsharing, optional: true
   
   
 end

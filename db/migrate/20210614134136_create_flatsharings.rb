@@ -4,6 +4,8 @@ class CreateFlatsharings < ActiveRecord::Migration[6.1]
       t.string :title
       t.string :description
       t.integer :admin_id
+      t.text :flat_mate
+
       t.timestamps
     end
   end

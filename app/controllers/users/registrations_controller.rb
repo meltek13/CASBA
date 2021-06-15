@@ -10,6 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   
     def register_success   
+        @current_user = resource
         render json: {user: resource}  
     end
   
