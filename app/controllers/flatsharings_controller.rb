@@ -1,5 +1,5 @@
 class FlatsharingsController < ApplicationController
-  before_action :set_flatsharing, only: [:show, :update, :destroy]
+  before_action :set_flatsharing, only: [:show, :admin, :dashboard, :update, :destroy]
 
   # GET /flatsharings
   def index
@@ -10,7 +10,26 @@ class FlatsharingsController < ApplicationController
 
   # GET /flatsharings/1
   def show
-    render json: @flatsharing
+      render json: @flatsharing
+  end
+  
+  # GET /flatsharings/1/admin
+  def admin 
+    user = User.all
+    render json: user.find_by(id: @flatsharing.admin_id)   
+  end
+  
+  # GET /flatsharings/1/dashboard
+  def dashboard 
+    user = User.all
+    
+    @guest = [{"not to be considered": ""},]
+    @flatsharing.pending_invitation.map do |u|
+      @guest << user.find_by(email: u)
+    end
+
+    @user = [user.find_by(id: @flatsharing.admin_id),@guest]
+    render json: @user 
   end
 
   # POST /flatsharings
