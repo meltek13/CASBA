@@ -6,6 +6,9 @@ Rails.application.routes.draw do
                  sessions: 'users/sessions',
                  registrations: 'users/registrations'
              }
+  get '/flatsharings/:id/admin', to: 'flatsharings#admin'
+  get '/flatsharings/:id/dashboard', to: 'flatsharings#dashboard'
+
   resources :members
   resources :calendars
   resources :flatsharings
