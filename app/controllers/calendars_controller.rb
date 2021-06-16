@@ -8,14 +8,30 @@ class CalendarsController < ApplicationController
     render json: @calendars
   end
 
-  # GET /calendars/1
+  # GET /dashboard/1/calendars
+  def showCalendars
+    @calendars = []
+    dashboard = Flatsharing.find(params[:id])
+
+    Calendar.all.each do |d|
+      if d.dashboard == dashboard.id
+        @calendars << d
+      end
+    end
+
+    render json: @calendars
+    
+  end
+
   def show
     render json: @calendar
   end
 
-  # POST /calendars
-  def create
+  # POST /dashboard/1/calendars
+  def createCalendars
     @calendar = Calendar.new(calendar_params)
+    
+    @calendar.dashboard = Flatsharing.find(params[:id]).id
 
     if @calendar.save
       render json: @calendar, status: :created, location: @calendar
@@ -24,7 +40,8 @@ class CalendarsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /calendars/1
+
+  # # PATCH/PUT /calendars/1
   def update
     if @calendar.update(calendar_params)
       render json: @calendar
@@ -33,7 +50,7 @@ class CalendarsController < ApplicationController
     end
   end
 
-  # DELETE /calendars/1
+  # # DELETE /calendars/1
   def destroy
     @calendar.destroy
   end
