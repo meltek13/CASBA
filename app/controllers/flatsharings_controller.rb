@@ -23,13 +23,13 @@ class FlatsharingsController < ApplicationController
   def dashboard 
     user = User.all
     
-    @guest = [{"not to be considered": ""},]
+    @guest = []
+
     @flatsharing.pending_invitation.map do |u|
       @guest << user.find_by(email: u)
     end
 
-    @user = [user.find_by(id: @flatsharing.admin_id),@guest]
-    render json: @user 
+    render json: {admin: user.find_by(id: @flatsharing.admin_id), guest: @guest}
   end
 
   # POST /flatsharings
