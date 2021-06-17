@@ -12,13 +12,20 @@ class MembersController < ApplicationController
     end
 
     def create
+      @user = User.new(user_params)
+      if @user.save
+        
+        render json: {user: @user}, status: :created, location: @user
+      else
+        render json: @user.errors, status: :unprocessable_entity
+      end
     end
   
     def edit
       @user = User.find(params[:id])
     end
 
-      # PATCH/PUT /annoucements/1
+      # PATCH/PUT /users/1
     def update
       @user = User.find(params[:id])
       if @user.update(user_params)
@@ -30,14 +37,16 @@ class MembersController < ApplicationController
     
     def destroy
       @user = User.find(params[:id])
-      render json: {user: @user }
+      render json: {user: User.all}
       @user.destroy
     end 
 
     private
-
     # Only allow a list of trusted parameters through.
     def user_params
-      params.permit(:id ,:email, :nickname, :avatar)
+      params.permit(:id ,:email,:nickname, :avatar, :password, :flatsharing_id, :member, :user)
+    end
+    def set_user
+      @user = User.find(params[:id])
     end
   end
