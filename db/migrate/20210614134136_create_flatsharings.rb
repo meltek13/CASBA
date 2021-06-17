@@ -5,7 +5,8 @@ class CreateFlatsharings < ActiveRecord::Migration[6.1]
       t.string :description
       t.integer :admin_id
       t.text :pending_invitation
-      
+      t.belongs_to :user, index: true
+
       t.timestamps
     end
   end
