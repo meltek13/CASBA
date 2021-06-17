@@ -23,7 +23,7 @@ class ExpensesController < ApplicationController
   
   def update
     
-    if @expense.update(expense_params)
+    if @expense.update(expense_params) && @expense.concerned_colocs.to_i != @expense.user_id
       if @expense.pending_payment == false 
         @expense.paid_expense = true
       else
