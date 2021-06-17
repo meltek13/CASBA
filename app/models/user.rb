@@ -10,7 +10,9 @@ class User < ApplicationRecord
   :recoverable,
   jwt_revocation_strategy: JwtDenylist
   has_many :expenses
-  
+
+  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP } 
+  validates :password, presence: true, :length => {:within => 6..40}
 
   def welcome_send
     UserMailer.welcome_email(self).deliver_now

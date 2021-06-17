@@ -4,12 +4,24 @@ class FlatsharingsController < ApplicationController
   # GET /flatsharings
   def index
     @flatsharings = Flatsharing.all
+    @user = User.all
 
+    @flatsharings.map do |u|
+      u.pending_invitation.map do |i|
+      u.flat_mate << @user.find_by(email: i)
+      end
+    end
     render json: @flatsharings
   end
 
   # GET /flatsharings/1
   def show
+    @user = User.all
+
+    @flatsharing.pending_invitation.map do |u|
+      @flatsharing.flat_mate << @user.find_by(email: u)
+    end
+
       render json: @flatsharing
   end
   
@@ -34,8 +46,8 @@ class FlatsharingsController < ApplicationController
 
   # POST /flatsharings
   def create
-    @flatsharing = Flatsharing.new(flatsharing_params)
     
+    @flatsharing = Flatsharing.new(flatsharing_params)
     if @flatsharing.save
       render json: {flatsharing: @flatsharing}, status: :created, location: @flatsharing
     else
@@ -65,6 +77,6 @@ class FlatsharingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def flatsharing_params
-      flatsharing_params = params.require(:flatsharing).permit(:title, :description, :admin_id, :pending_invitation=>[])
+      flatsharing_params = params.require(:flatsharing).permit(:title, :description, :admin_id, :pending_invitation=>[], :flat_mate=>[])
     end
 end
