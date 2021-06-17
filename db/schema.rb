@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_14_140037) do
+ActiveRecord::Schema.define(version: 2021_06_16_153854) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,14 +53,32 @@ ActiveRecord::Schema.define(version: 2021_06_14_140037) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "expenses", force: :cascade do |t|
+    t.integer "id_expense"
+    t.string "title"
+    t.date "date_of_expense"
+    t.float "total_amount"
+    t.string "concerned_colocs"
+    t.boolean "pending_payment"
+    t.boolean "paid_expense"
+    t.bigint "user_id"
+    t.bigint "flatsharing_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["flatsharing_id"], name: "index_expenses_on_flatsharing_id"
+    t.index ["user_id"], name: "index_expenses_on_user_id"
+  end
+
   create_table "flatsharings", force: :cascade do |t|
     t.string "title"
     t.string "description"
     t.integer "admin_id"
     t.text "pending_invitation"
+    t.bigint "user_id"
     t.text "flat_mate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_flatsharings_on_user_id"
   end
 
   create_table "jwt_denylist", force: :cascade do |t|
@@ -73,12 +91,14 @@ ActiveRecord::Schema.define(version: 2021_06_14_140037) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "nickname", default: "", null: false
+    t.bigint "flatsharing_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["flatsharing_id"], name: "index_users_on_flatsharing_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
