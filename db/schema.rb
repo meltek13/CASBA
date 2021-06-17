@@ -75,6 +75,10 @@ ActiveRecord::Schema.define(version: 2021_06_16_153854) do
     t.integer "admin_id"
     t.text "pending_invitation"
     t.text "flat_mate"
+<<<<<<< HEAD
+
+=======
+>>>>>>> 7a350d47056d2c7b2966096425e5805b0884a4aa
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
