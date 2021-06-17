@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(version: 2021_06_16_153854) do
     t.string "description"
     t.integer "admin_id"
     t.text "pending_invitation"
-    t.bigint "user_id"
     t.text "flat_mate"
 <<<<<<< HEAD
 
