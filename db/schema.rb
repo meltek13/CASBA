@@ -74,11 +74,9 @@ ActiveRecord::Schema.define(version: 2021_06_16_153854) do
     t.string "description"
     t.integer "admin_id"
     t.text "pending_invitation"
-    t.bigint "user_id"
     t.text "flat_mate"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_flatsharings_on_user_id"
   end
 
   create_table "jwt_denylist", force: :cascade do |t|
