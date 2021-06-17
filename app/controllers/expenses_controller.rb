@@ -13,7 +13,7 @@ class ExpensesController < ApplicationController
   def create
     @expense = Expense.new(expense_params)
     if @expense.concerned_colocs.to_i != @expense.user_id && @expense.save
-      #  @expense.user_id = @flatsharing.admin_id
+       @expense.user_id = @flatsharing.admin_id
       render json: {expense: @expense}, status: :created, location: @expense
     else
       render json: @expense.errors, status: :unprocessable_entity
@@ -22,12 +22,13 @@ class ExpensesController < ApplicationController
   end
   
   def update
-    if @expense.pending_payment == false 
-      @expense.paid_expense = true
-    elsif 
-      @expense.paid_expense = false
-    end
-    if @expense.save
+    
+    if @expense.update(expense_params)
+      if @expense.pending_payment == false 
+        @expense.paid_expense = true
+      else
+        @expense.paid_expense = false
+      end
       render json: @expense
     else
       render json: @expense.errors, status: :unprocessable_entity
