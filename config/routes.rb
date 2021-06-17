@@ -8,6 +8,8 @@ Rails.application.routes.draw do
              }
   get '/flatsharings/:id/admin', to: 'flatsharings#admin'
   get '/flatsharings/:id/dashboard', to: 'flatsharings#dashboard'
+  post "/dashboard/:id/calendars", to: 'calendars#createCalendars'
+  get "/dashboard/:id/calendars", to: 'calendars#showCalendars'
 
   resources :members
   resources :calendars

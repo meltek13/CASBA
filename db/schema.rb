@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 2021_06_16_153854) do
     t.string "title"
     t.string "description"
     t.string "timedate"
+    t.integer "dashboard"
+    t.integer "by"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -74,7 +76,10 @@ ActiveRecord::Schema.define(version: 2021_06_16_153854) do
     t.text "pending_invitation"
     t.bigint "user_id"
     t.text "flat_mate"
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7a350d47056d2c7b2966096425e5805b0884a4aa
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
