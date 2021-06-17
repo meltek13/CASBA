@@ -34,7 +34,7 @@ class FlatsharingsController < ApplicationController
   # GET /flatsharings/1/dashboard
   def dashboard 
     user = User.all
-    
+   
     @guest = []
 
     @flatsharing.pending_invitation.map do |u|
