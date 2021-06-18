@@ -18,7 +18,7 @@ class MembersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-      # PATCH/PUT /annoucements/1
+      # PATCH/PUT /memberss/1
     def update
       @user = User.find(params[:id])
       if @user.update(user_params)
@@ -38,6 +38,6 @@ class MembersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.permit(:id ,:email, :nickname, :avatar)
+      params.permit(:id ,:email, :nickname, :status, :avatar)
     end
   end
