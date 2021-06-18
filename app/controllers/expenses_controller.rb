@@ -23,7 +23,7 @@ class ExpensesController < ApplicationController
   
   def update
     
-    if @expense.update(expense_params)
+    if @expense.update(expense_params) && @expense.concerned_colocs.to_i != @expense.user_id
       if @expense.pending_payment == false 
         @expense.paid_expense = true
       else
@@ -31,7 +31,7 @@ class ExpensesController < ApplicationController
       end
       render json: @expense
     else
-      render json: @expense.errors, status: :unprocessable_entity
+      render json: "expense_concerned_coloc_cant't_include_admin_id", status: :unprocessable_entity
     end
   end
   
