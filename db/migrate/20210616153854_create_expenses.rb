@@ -5,7 +5,8 @@ class CreateExpenses < ActiveRecord::Migration[6.1]
       t.string :title
       t.date :date_of_expense
       t.float :total_amount
-      t.string :concerned_colocs
+      t.text :concerned_colocs
+      t.float :split_amount_to_colocs 
       t.boolean :pending_payment 
       t.boolean :paid_expense
       t.belongs_to :user, index: true
