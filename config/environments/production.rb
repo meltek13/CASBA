@@ -5,7 +5,7 @@ Rails.application.configure do
 
   # Code is not reloaded between requests.
   config.cache_classes = true
-  config.active_storage.service = :local
+  config.active_storage.service = {:host => "https://casba-rails-api.herokuapp.com/"}
 
   # Eager load code on boot. This eager loads most of Rails and
   # your application in memory, allowing both threaded web servers
