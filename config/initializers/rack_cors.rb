@@ -1,9 +1,9 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
     allow do
-      origins 'https://casba-react-front.herokuapp.com'
+      origins '*'
       resource '*',
           headers: :any,
-          methods: [:get, :post, :patch, :put, :delete, :options],
+          methods: :any,
           expose: ['Authorization']
     end
   end
