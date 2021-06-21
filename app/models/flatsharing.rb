@@ -1,5 +1,5 @@
 class Flatsharing < ApplicationRecord
-   after_create :invitation_to_join_flat
+   #after_create :invitation_to_join_flat
    has_one :token
    has_many :users
    has_many :expenses
