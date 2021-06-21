@@ -3,6 +3,8 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_one_attached :avatar
+
+  has_one_attached :flat_picture
   belongs_to :flatsharing, optional: true
   devise :database_authenticatable,
   :jwt_authenticatable,
