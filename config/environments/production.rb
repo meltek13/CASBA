@@ -12,7 +12,9 @@ Rails.application.configure do
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
-
+  config.action_mailer.perform_deliveries = true
+  
+  config.action_mailer.default_url_options = { host: 'https://casba-rails-api.herokuapp.com/' }
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
 
@@ -56,7 +58,7 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "Starter_Rails_Api_production"
 
-  config.action_mailer.perform_caching = false
+  config.action_mailer.perform_caching = true
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

@@ -9,8 +9,8 @@ Rails.application.configure do
   config.cache_classes = false
   config.active_storage.service = :local
   
-  config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.perform_deliveries = false
+  #config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
 
   # Do not eager load code on boot.
   config.eager_load = false
