@@ -54,13 +54,14 @@ ActiveRecord::Schema.define(version: 2021_06_16_153854) do
   end
 
   create_table "expenses", force: :cascade do |t|
-    t.string "id_expense"
+    t.integer "id_expense"
     t.string "title"
     t.date "date_of_expense"
     t.float "total_amount"
     t.text "concerned_colocs"
     t.float "split_amount_to_colocs"
-    t.boolean "pending_payment", default: true
+    t.boolean "pending_payment"
+    t.boolean "paid_expense"
     t.bigint "user_id"
     t.bigint "flatsharing_id"
     t.datetime "created_at", precision: 6, null: false
