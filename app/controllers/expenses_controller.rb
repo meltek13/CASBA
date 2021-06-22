@@ -13,7 +13,7 @@ class ExpensesController < ApplicationController
   def create
     @expense = Expense.new(expense_params)
       if @expense.concerned_colocs != @expense.user_id && @expense.save
-        @expense.user_id = @flatsharing.admin_id
+        
       render json: {expense: @expense}, status: :created, location: @expense
     else
       render json: @expense.errors, status: :unprocessable_entity
