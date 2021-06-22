@@ -12,18 +12,7 @@ class ExpensesController < ApplicationController
 
   def create
     @expense = Expense.new(expense_params)
-    
-      if @expense.concerned_colocs != @expense.user_id && @expense.save
-        @expense_tab = []
-        @expense.concerned_colocs.map do |colocs|
-          @expense_tab << colocs
-        end
-        @expense.concerned_colocs = @expense_tab
-        
-       if @expense.concerned_colocs.length < 0
-        @expense.split_amount_to_colocs = expense.total_amount / @expense.concerned_colocs.to_f
-       end
-       @expense.user_id = @flatsharing.admin_id
+      if @expense.concerned_colocs != @expense.user_id && @expense.save 
       render json: {expense: @expense}, status: :created, location: @expense
     else
       render json: @expense.errors, status: :unprocessable_entity
@@ -33,18 +22,15 @@ class ExpensesController < ApplicationController
   
   def update
     
-    if @expense.update(expense_params) && @expense.concerned_colocs.to_i != @expense.user_id
+    if @expense.update(expense_params) && @expense.concerned_colocs != @expense.user_id
       if @expense.pending_payment == false 
         @expense.paid_expense = true
       else
         @expense.paid_expense = false
       end
-      if @expense.concerned_colocs.length < 0
-        @expense.split_amount_to_colocs = expense.total_amount / @expense.concerned_colocs.to_i.to_f
-       end
       render json: @expense
     else
-      render json: "expense_concerned_coloc_cant't_include_admin_id", status: :unprocessable_entity
+      render json: @expense.errors, status: :unprocessable_entity
     end
   end
   
@@ -54,7 +40,7 @@ class ExpensesController < ApplicationController
 
   private
     def expense_params
-      expense_params = params.require(:expense).permit(:id_expense, :title, :date_of_expense, :total_amount, :concerned_colocs, :pending_payment, :paid_expense, :user_id, :flatsharing_id, :split_amount_to_colocs) 
+      expense_params = params.require(:expense).permit(:id_expense, :title, :date_of_expense, :total_amount, {:concerned_colocs=> []}, :pending_payment, :paid_expense, :user_id, :flatsharing_id, :split_amount_to_colocs)
     end
     def set_expense
       @expense = Expense.find(params[:id])
