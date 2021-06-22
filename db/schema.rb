@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 2021_06_16_153854) do
     t.text "concerned_colocs"
     t.float "split_amount_to_colocs"
     t.boolean "pending_payment", default: true
-    t.boolean "paid_expense", default: false
     t.bigint "user_id"
     t.bigint "flatsharing_id"
     t.datetime "created_at", precision: 6, null: false
@@ -90,9 +89,11 @@ ActiveRecord::Schema.define(version: 2021_06_16_153854) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "nickname", default: "", null: false
+    t.string "status", default: "status", null: false
     t.bigint "flatsharing_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.string "color"
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

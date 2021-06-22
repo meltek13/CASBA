@@ -12,8 +12,7 @@ class ExpensesController < ApplicationController
 
   def create
     @expense = Expense.new(expense_params)
-      if @expense.concerned_colocs != @expense.user_id && @expense.save
-        
+      if @expense.concerned_colocs != @expense.user_id && @expense.save 
       render json: {expense: @expense}, status: :created, location: @expense
     else
       render json: @expense.errors, status: :unprocessable_entity
@@ -31,7 +30,7 @@ class ExpensesController < ApplicationController
       end
       render json: @expense
     else
-      render json: "expense_concerned_coloc_cant't_include_admin_id", status: :unprocessable_entity
+      render json: @expense.errors, status: :unprocessable_entity
     end
   end
   

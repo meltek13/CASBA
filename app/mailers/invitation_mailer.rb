@@ -1,5 +1,5 @@
 class InvitationMailer < ApplicationMailer
-    default from: 'fred@yopmail.com'
+    default from: 'casbaapp@gmail.com'
  
     def invitation_email(flat)
       #on récupère l'instance user pour ensuite pouvoir la passer à la view en @user

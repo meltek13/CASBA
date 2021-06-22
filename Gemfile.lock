@@ -212,6 +212,7 @@ DEPENDENCIES
   byebug
   devise
   devise-jwt
+  dotenv
   dotenv-rails
   letter_opener
   listen (~> 3.3)

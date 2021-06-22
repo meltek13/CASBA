@@ -7,11 +7,12 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
       t.string :nickname, null: false, default: ""
+      t.string :status, null: false, default: "status"
       t.belongs_to :flatsharing, index: true
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
-
+      t.string :color 
       ## Rememberable
       t.datetime :remember_created_at
 

@@ -57,7 +57,8 @@ class FlatsharingsController < ApplicationController
 
   # PATCH/PUT /flatsharings/1
   def update
-    if @flatsharing.update(flatsharing_params)
+    @flatsharing.pending_invitation.push(params["pending_invitation"]) 
+    if @flatsharing.update({pending_invitation: @flatsharing.pending_invitation})
       render json: @flatsharing
     else
       render json: @flatsharing.errors, status: :unprocessable_entity
