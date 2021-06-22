@@ -12,8 +12,8 @@ class ExpensesController < ApplicationController
 
   def create
     @expense = Expense.new(expense_params)
-    if @expense.concerned_colocs.to_i != @expense.user_id && @expense.save
-       @expense.user_id = @flatsharing.admin_id
+      if @expense.concerned_colocs != @expense.user_id && @expense.save
+        @expense.user_id = @flatsharing.admin_id
       render json: {expense: @expense}, status: :created, location: @expense
     else
       render json: @expense.errors, status: :unprocessable_entity
@@ -23,7 +23,7 @@ class ExpensesController < ApplicationController
   
   def update
     
-    if @expense.update(expense_params) && @expense.concerned_colocs.to_i != @expense.user_id
+    if @expense.update(expense_params) && @expense.concerned_colocs != @expense.user_id
       if @expense.pending_payment == false 
         @expense.paid_expense = true
       else
@@ -41,7 +41,7 @@ class ExpensesController < ApplicationController
 
   private
     def expense_params
-      expense_params = params.require(:expense).permit(:id_expense, :title, :date_of_expense, :total_amount, :concerned_colocs, :pending_payment, :paid_expense, :user_id, :flatsharing_id) 
+      expense_params = params.require(:expense).permit(:id_expense, :title, :date_of_expense, :total_amount, {:concerned_colocs=> []}, :pending_payment, :paid_expense, :user_id, :flatsharing_id, :split_amount_to_colocs)
     end
     def set_expense
       @expense = Expense.find(params[:id])

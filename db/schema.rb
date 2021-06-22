@@ -54,13 +54,14 @@ ActiveRecord::Schema.define(version: 2021_06_16_153854) do
   end
 
   create_table "expenses", force: :cascade do |t|
-    t.integer "id_expense"
+    t.string "id_expense"
     t.string "title"
     t.date "date_of_expense"
     t.float "total_amount"
-    t.string "concerned_colocs"
-    t.boolean "pending_payment"
-    t.boolean "paid_expense"
+    t.text "concerned_colocs"
+    t.float "split_amount_to_colocs"
+    t.boolean "pending_payment", default: true
+    t.boolean "paid_expense", default: false
     t.bigint "user_id"
     t.bigint "flatsharing_id"
     t.datetime "created_at", precision: 6, null: false
@@ -75,10 +76,6 @@ ActiveRecord::Schema.define(version: 2021_06_16_153854) do
     t.integer "admin_id"
     t.text "pending_invitation"
     t.text "flat_mate"
-<<<<<<< HEAD
-
-=======
->>>>>>> 7a350d47056d2c7b2966096425e5805b0884a4aa
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
