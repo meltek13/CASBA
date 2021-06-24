@@ -1,6 +1,6 @@
 class UserSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
-  attributes :id, :email, :nickname, :status, :avatar, :flat_picture, :color
+  attributes :id, :email, :nickname, :status, :avatar, :flat_picture, :color, :solde
   def avatar
     if object.avatar.attached?
       {
