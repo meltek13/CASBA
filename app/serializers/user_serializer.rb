@@ -8,8 +8,8 @@ class UserSerializer < ActiveModel::Serializer
       }
     end
   end
+
   def flat_picture
-    
     if object.flat_picture.attached?
       {
         url: rails_blob_url(object.flat_picture)

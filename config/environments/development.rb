@@ -1,4 +1,4 @@
-require "active_support/core_ext/integer/time"
+require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
@@ -8,8 +8,8 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
   config.active_storage.service = :local
-  
-  #config.action_mailer.delivery_method = :letter_opener
+
+  # config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.perform_deliveries = true
 
   # Do not eager load code on boot.
@@ -53,7 +53,6 @@ Rails.application.configure do
 
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
-
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
