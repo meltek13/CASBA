@@ -45,7 +45,7 @@ class MembersController < ApplicationController
   # Only allow a list of trusted parameters through.
   def user_params
     params.permit(:id, :email, :password, :nickname, :status, :avatar, :flat_picture, :flatsharing_id, :member,
-                  :user, :color)
+                  :user, :color, :solde)
   end
 
   def set_user
