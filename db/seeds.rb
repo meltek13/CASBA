@@ -53,8 +53,8 @@ theo = User.create!(
     color:"#d95f67",
    
 )
-theo.avatar.attached("https://ibb.co/60NGLXb")
-
+theo.avatar.attach(io:File.open(Rails.root.join('app/asset/images/avatar_2.jpg')),
+filename:'avatar_2.jpg')
 theo.flat_picture.attach(io:File.open(Rails.root.join('app/asset/images/flat_3.jpeg')),
 filename:'flat_3.jpeg')
 
