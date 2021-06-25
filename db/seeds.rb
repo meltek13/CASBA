@@ -51,8 +51,9 @@ theo = User.create!(
     password: "coucou",
     nickname: "Théo",
     color:"#d95f67",
-    avatar:"https://ibb.co/60NGLXb",
+   
 )
+theo.avatar.attached("https://ibb.co/60NGLXb")
 
 theo.flat_picture.attach(io:File.open(Rails.root.join('app/asset/images/flat_3.jpeg')),
 filename:'flat_3.jpeg')
