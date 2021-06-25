@@ -1,8 +1,10 @@
 
 User.destroy_all
 Flatsharing.destroy_all
+Expense.destroy_all
+Calendar.destroy_all
 
-
+#Create user and one flat 
 fred = User.create!(
     email:"fred@yopmail.com",
     password: "coucou",
@@ -56,5 +58,38 @@ theo.flat_picture.attach(io:File.open(Rails.root.join('app/asset/images/flat_3.j
 filename:'flat_3.jpeg')
 
 
+
+#create calendar
+Calendar.create!(
+    title: "Soiree GOT",
+    description: "Regarder le nouvel episode de Game of throooone aiiiight ! #winter is comming les bro",
+    timedate: "Sat Jun 26 2021 00:00:00 GMT+0200 (heure d’été d’Europe centrale)",
+    dashboard: "1",
+    by: "1"
+)
+
+Calendar.create!(
+    title: "Soiree Pyjamas",
+    description: "Sortez les potins",
+    timedate: "Sat Jun 26 2021 00:00:00 GMT+0200 (heure d’été d’Europe centrale)",
+    dashboard: "1",
+    by: "1"
+)
+
+Calendar.create!(
+    title: "Soiree Tizzz",
+    description: "Beer pong; beer jumping, strip beer",
+    timedate: "Sat Jun 24 2021 00:00:00 GMT+0200 (heure d’été d’Europe centrale)",
+    dashboard: "1",
+    by: "1"
+)
+
+Calendar.create!(
+    title: "Plombier",
+    description: "Reparer robiner a 14h",
+    timedate: "Sat Jun 23 2021 00:00:00 GMT+0200 (heure d’été d’Europe centrale)",
+    dashboard: "1",
+    by: "1"
+)
 
 
