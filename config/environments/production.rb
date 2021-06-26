@@ -2,8 +2,7 @@ require 'active_support/core_ext/integer/time'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.assets.compile = true
-  config.assets.digest = true
+  
   # Code is not reloaded between requests.
   config.cache_classes = true
   config.active_storage.service = :local
